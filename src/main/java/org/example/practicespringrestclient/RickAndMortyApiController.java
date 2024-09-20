@@ -1,8 +1,7 @@
 package org.example.practicespringrestclient;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,4 +19,18 @@ public class RickAndMortyApiController {
     public List<ApiResponseFields> getCharacters() {
         return rickAndMortyApiService.findAll();
     }
+
+    @GetMapping("/{id}")
+    /*
+    * Get a single character by its id
+    * */
+    public ApiResponseFields getCharacterById(@PathVariable int id) {
+        return rickAndMortyApiService.findById(id);
+    }
+
+//    @PostMapping
+//    @ResponseStatus(HttpStatus.CREATED)
+//    public ApiResponseFields createCharacter(@RequestBody ApiResponseFields character) {
+//        return RickAndMortyApiService.createCharacter(ApiResponseFields);
+//    }
 }
