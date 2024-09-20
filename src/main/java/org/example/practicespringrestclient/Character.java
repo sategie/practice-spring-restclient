@@ -1,4 +1,4 @@
 package org.example.practicespringrestclient;
 
-public record Character() {
+public record Character(int id, String name, String status) {
 }
