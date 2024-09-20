@@ -17,7 +17,7 @@ public class RickAndMortyApiController {
     }
 
     @GetMapping
-    public List<Character> getCharacters() {
+    public List<ApiResponseFields> getCharacters() {
         return rickAndMortyApiService.findAll();
     }
 }

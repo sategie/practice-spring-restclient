@@ -13,7 +13,7 @@ public class RickAndMortyApiService {
 
 
     /*
-    * Constructor to initialize the class with a built-in RestClient.Builder
+    * Constructor to initialize the class with the static nested class RestClient.Builder
     * builder is used to configure(build) the restClient instance
     * */
     public RickAndMortyApiService(RestClient.Builder builder){
@@ -23,16 +23,14 @@ public class RickAndMortyApiService {
 
     }
 
-    /*
-    * Retrieves a list of all characters from the external API in JSON format
-    * Returns a list of Character objects*/
-    public List<Character> findAll(){
-        return restClient.get()
+
+    public List<ApiResponseFields> findAll(){
+        ApiResponse response = this.restClient.get()
         .uri("/character")
                 .retrieve()
-//                Specifies the expected response type as a list of Character objects
-                .body(new ParameterizedTypeReference<List<Character>>() {
-                });
+                .body(ApiResponse.class);
+        return response.results();
+
 
     }
 
