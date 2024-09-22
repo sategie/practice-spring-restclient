@@ -27,26 +27,27 @@ public class RickAndMortyApiService {
     /*
     * Retrieves a list of characters from the Rick and Morty API
     *
-    * @return A list of ApiResponseFields objects*/
-    public List<ApiResponseFields> findAll(){
+    * @return A list of ApiFields objects*/
+    public List<ApiFields> findAll(){
 //        Perform a GET request to the "/character" endpoint
-        return restClient.get()
-
+        ApiResponse response = restClient.get()
                 .uri("/character")
                 .retrieve()
-                .body(ApiResponse.class)
-                .results();
+                .body(ApiResponse.class);
+
+        return response.results();
+
 
     }
 
 /*
 * Retrieves a single character from the Rick and Morty API by its id
 * */
-    public ApiResponseFields findById(int id){
+    public ApiFields findById(int id){
         return restClient.get()
                 .uri("/character/{id}", id)
                 .retrieve()
-                .body(ApiResponseFields.class);
+                .body(ApiFields.class);
     }
 
 }
